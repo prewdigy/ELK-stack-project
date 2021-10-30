@@ -2,7 +2,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-(https://user-images.githubusercontent.com/87891944/139539114-4e445476-6da9-4bbb-8a72-28cbbd41f440.png)
+TODO put image of network here
 
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the ELK-stack-project file may be used to install only certain pieces of it, such as Filebeat.
