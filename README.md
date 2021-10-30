@@ -56,13 +56,14 @@ A summary of the access policies in place can be found in the table below.
 | Webserver1:2 | No                  | 10.0.0.4             |
 | Elk Stack    | Yes                 | 76.105.177.40        |
 
-### Elk Configuration
+## Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because it reduces the cost of labor, simplifies and speeds up the integration process when new machines/equipment is purchased, reduces human error, and increases disaster recory speed
--
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because it reduces the cost of labor, simplifies and speeds up the integration process when new machines/equipment are purchased, reduces human error, and increases disaster recory speed.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
+-
+- 
+-   _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
 - ...
 - ...
 
