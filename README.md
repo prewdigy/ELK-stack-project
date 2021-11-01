@@ -2,7 +2,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-TODO put image of network here
+[ELK stack Network diagram.pdf](https://github.com/prewdigy/ELK-stack-project/files/7451867/Network.w_.ELK.stack.drawio.pdf)
 
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the ELK-stack-project file may be used to install only certain pieces of it, such as Filebeat.
@@ -10,7 +10,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
   - _TODO: Enter the playbook file._
 
 This document contains the following details:
-- Description of the Topologu
+- Description of the Topology
 - Access Policies
 - ELK Configuration
   - Beats in Use
@@ -24,8 +24,7 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 
 Load balancing ensures that the application will be highly redundant, in addition to restricting access to the network.  Load balancers also assist in security by protecting the site from DDoS attacks due to automatically balancing what ever the incoming traffic is between all the servers attached to it.   
 
-The Jump Box allows for much more controlled access to the webservers 
-- _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
+The Jump Box allows for much more controlled access to the webservers.  The jump box is a highly secured server only used for adminstrative tasks.  This greatly reduces the vulnerablity of the jump box being compromised by many common activities: email, web browsing, or using other computer applications.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the log files and system services.  It does this using file beat and metric beat
 
@@ -42,19 +41,18 @@ The configuration details of each machine may be found below.
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the Jump Box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- 76.105.177.40
+Only the Jump Box machine can accept connections from the Internet. Access to this machine is only allowed from a specified IP address using the Inbound rules of security group
 
 Machines within the network can only be accessed by the Jump Box machine.
 
 
-A summary of the access policies in place can be found in the table below.
+A summary of the access policies in place can be found in the table below and listed in the rules on page 2 and 4 of the pdf
 
-| Name         | Publicly Accessible | Allowed IP Addresses |
-|--------------|---------------------|----------------------|
-| Jump Box     | Yes                 | 76.105.177.40        |
-| Webserver1:2 | No                  | 10.0.0.4             |
-| Elk Stack    | Yes                 | 76.105.177.40        |
+| Name         | Publicly Accessible | Allowed IP Addresses     |
+|--------------|---------------------|--------------------------|
+| Jump Box     | Yes                 | based on security group  |
+| Webserver1:2 | No                  | 10.0.0.4                 |
+| Elk Stack    | Yes                 | based on security group  |
 
 ## Elk Configuration
 
