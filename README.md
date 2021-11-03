@@ -7,8 +7,18 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the ELK-stack-project file may be used to install only certain pieces of it, such as Filebeat.
 
-  - _TODO: Enter the playbook file._
+[Install ELK server playbook](https://github.com/prewdigy/I-love-me/files/7465559/install-ELK-server-playbook.txt)
 
+___
+[Install filebeat playbook](https://github.com/prewdigy/I-love-me/files/7465561/install-filebeat-playbook.txt)
+
+[Filebeat config file](https://github.com/prewdigy/I-love-me/files/7465567/filebeat-config-as-a-text.txt)
+
+____
+[Install metricbeat playbook](https://github.com/prewdigy/I-love-me/files/7465562/install-metricbeat-playbook.txt)
+
+[Metricbeat config file](https://github.com/prewdigy/I-love-me/files/7465566/metricbeat-config-as-a-text.txt)
+____
 This document contains the following details:
 - Description of the Topology
 - Access Policies
@@ -45,7 +55,6 @@ Only the Jump Box machine can accept connections from the Internet. Access to th
 
 Machines within the network can only be accessed by the Jump Box machine.
 
-
 A summary of the access policies in place can be found in the table below and listed in the rules on page 2 and 4 of the pdf
 
 | Name         | Publicly Accessible | Allowed IP Addresses     |
@@ -59,15 +68,17 @@ A summary of the access policies in place can be found in the table below and li
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because it reduces the cost of labor, simplifies and speeds up the integration process when new machines/equipment are purchased, reduces human error, and increases disaster recory speed.
 
 The playbook implements the following tasks:
--
-- 
--   _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
+- Installs Docker then Python3
+- Installs Docker module using pip
+- Increases the virtual memory in the system and then tells the system that it has that much more virtual memory to use.   This is important other wise docker will not run properly
+- Downloads and runs the ELK container, setting to to start up during boot up, and publishing 3 different ports for UDP and TCP use (5601, 9200, and 5044)
 
-The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
-
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+Running 'docker ps` on the ELK stack machine after successfully configuring the ELK instance should have an output similar to this
+```
+CONTAINER ID   IMAGE                 COMMAND                  CREATED       STATUS         PORTS                                                                             NAMES
+5f7b8ad9eb4f   sebp/elk:761          "/usr/local/bin/star…"   10 days ago   Up 5 minutes   0.0.0.0:5044->5044/tcp, 0.0.0.0:5601->5601/tcp, 0.0.0.0:9200->9200/tcp, 9300/tcp   elk
+f5ab0d801344   cyberxsecurity/dvwa   "/main.sh"               10 days ago   Up 5 minutes   0.0.0.0:80->80/tcp                                                                 dvwa
+```
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -88,13 +99,8 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the .yml file to /etc/ansible/roles.
+- Copy the metricbeat and filebeat .yml files to /etc/ansible/roles.
+- Copy the metricbeat-config.yml file to /etc/ansible/files.  Make sure that the IP address for both the Kibana and Elasticsearch output are the private IP address of your ELK stack.  Kibana is usually handled on port 5601, and Elasticsearch on port 9200.
+- Copy the filebeat-config.yml ile to /etc/ansible/files. Make sure that the IP address for both the Kibana, line 1106, and Elasticsearch output, line 1806, are the private IP address of your ELK stack. Kibana is usually handled on port 5601, and Elasticsearch on port 9200.
 - Update the hosts file to include the local IP addresses of the servers to be updated specified under [elk]
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
-
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running? http://[pubilc-IP-ELK server]:5601/app/kibana
-
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+- Run the playbook, and navigate to [http://public_IP_for_ELK:5601/app/kibana] to check that the installation worked as expected.
