@@ -2,22 +2,21 @@
 
 The files in this repository were used to configure the network depicted below.
 
-[ELK stack Network diagram.pdf](https://github.com/prewdigy/ELK-stack-project/files/7451867/Network.w_.ELK.stack.drawio.pdf)
-
+[ELK stack Network diagram.pdf](Network.w_.ELK.stack.drawio.pdf)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the ELK-stack-project file may be used to install only certain pieces of it, such as Filebeat.
 
-[Install ELK server playbook](https://github.com/prewdigy/I-love-me/files/7465559/install-ELK-server-playbook.txt)
+[Install ELK server playbook](install-ELK-server-playbook.yml)
 
 ___
-[Install filebeat playbook](https://github.com/prewdigy/I-love-me/files/7465561/install-filebeat-playbook.txt)
+[Install filebeat playbook](install-filebeat-playbook.yml)
 
-[Filebeat config file](https://github.com/prewdigy/I-love-me/files/7465567/filebeat-config-as-a-text.txt)
+[Filebeat config file](filebeat-config.yml)
 
 ____
-[Install metricbeat playbook](https://github.com/prewdigy/I-love-me/files/7465562/install-metricbeat-playbook.txt)
+[Install metricbeat playbook](install-metricbeat-playbook.yml)
 
-[Metricbeat config file](https://github.com/prewdigy/I-love-me/files/7465566/metricbeat-config-as-a-text.txt)
+[Metricbeat config file](metricbeat-config.yml)
 ____
 This document contains the following details:
 - Description of the Topology
@@ -32,7 +31,7 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly redundant, in addition to restricting access to the network.  Load balancers also assist in security by protecting the site from DDoS attacks due to automatically balancing what ever the incoming traffic is between all the servers attached to it.   
+Load balancing ensures that the application will be highly redundant, in addition to restricting access to the network.  Load balancers also assist in security by protecting the site from DDoS attacks due to automatically balancing what ever the incoming traffic is between all the servers attached to it.
 
 The Jump Box allows for a controlled more secure access to the webservers.  The jump box is a highly secured server only used for adminstrative tasks.  This greatly reduces the vulnerablity of the jump box being compromised by many common activities: email, web browsing, or using other computer applications.
 
@@ -49,7 +48,7 @@ The configuration details of each machine may be found below.
 
 ### Access Policies
 
-The machines on the internal network are not exposed to the public Internet. 
+The machines on the internal network are not exposed to the public Internet.
 
 Only the Jump Box machine can accept connections from the Internet. Access to this machine is only allowed from a specified IP address using the Inbound rules of security group
 
@@ -96,11 +95,22 @@ These Beats allow us to collect the following information from each machine:
 - Metricbeat takes the metrics and statistics that it collects and ships them to the output that you specify, such as Elasticsearch or Logstash. Metricbeat helps you monitor your servers by collecting metrics from the system and services running on the server.
 
 ### Using the Playbook
-In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
+In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned:
 
 SSH into the control node and follow the steps below:
-- Copy the metricbeat and filebeat .yml files to /etc/ansible/roles.
+
+Install ELK stack:
+
+    ansible-playbook -i hosts install-ELK-server-playbook.yml
+
+Install metricbeat:
+
+    ansible-playbook -i hosts install-metricbeat-playbook.yml
+
+Install filebeat:
+
+    ansible-playbook -i hosts install-filebeat-playbook.yml
+
 - Copy the metricbeat-config.yml file to /etc/ansible/files.  Make sure that the IP address for both the Kibana and Elasticsearch output are the private IP address of your ELK stack.  Kibana is usually handled on port 5601, and Elasticsearch on port 9200.
 - Copy the filebeat-config.yml ile to /etc/ansible/files. Make sure that the IP address for both the Kibana, line 1106, and Elasticsearch output, line 1806, are the private IP address of your ELK stack. Kibana is usually handled on port 5601, and Elasticsearch on port 9200.
-- Update the hosts file to include the local IP addresses of the servers to be updated specified under [elk]
 - Run the playbook, and navigate to [http://public_IP_for_ELK:5601/app/kibana] to check that the installation worked as expected.
