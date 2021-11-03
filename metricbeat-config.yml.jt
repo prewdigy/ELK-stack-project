@@ -94,7 +94,9 @@ setup.kibana:
 output.elasticsearch:
   # TODO: Change the hosts IP address to the IP address of your ELK server
   # TODO: Change password from `changeme` to the password you created
-  hosts: ["10.0.0.12:9200"]
+
+  # this uses the ansible_host value defined in hosts
+  hosts: ["{{ hostvars['data-logs']['ansible_host'] }}:9200"]
   username: "elastic"
   password: "changeme"
 

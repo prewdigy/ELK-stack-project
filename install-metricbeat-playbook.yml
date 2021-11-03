@@ -1,7 +1,7 @@
 ---
 - name: Install metric beat
   hosts: webservers
-  become: true
+  # become: true
   tasks:
     # Use command module
   - name: Download metricbeat
@@ -13,8 +13,8 @@
 
     # Use copy module
   - name: drop in metricbeat config
-    copy:
-      src: metricbeat-config.yml
+    template:
+      src: metricbeat-config.yml.jt
       dest: /etc/metricbeat/metricbeat.yml
 
     # Use command module
