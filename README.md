@@ -24,7 +24,7 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 
 Load balancing ensures that the application will be highly redundant, in addition to restricting access to the network.  Load balancers also assist in security by protecting the site from DDoS attacks due to automatically balancing what ever the incoming traffic is between all the servers attached to it.   
 
-The Jump Box allows for much more controlled access to the webservers.  The jump box is a highly secured server only used for adminstrative tasks.  This greatly reduces the vulnerablity of the jump box being compromised by many common activities: email, web browsing, or using other computer applications.
+The Jump Box allows for a controlled more secure access to the webservers.  The jump box is a highly secured server only used for adminstrative tasks.  This greatly reduces the vulnerablity of the jump box being compromised by many common activities: email, web browsing, or using other computer applications.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the log files and system services.  It does this using file beat and metric beat
 
