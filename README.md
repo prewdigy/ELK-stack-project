@@ -103,6 +103,10 @@ Install ELK stack:
 
     ansible-playbook -i hosts install-ELK-server-playbook.yml
 
+- Copy the filebeat-config.yml file to the same directory as your filebeat playbook. Before running the install0 playbook make sure that the IP address in the file beat config for both the Kibana, line 1106, and Elasticsearch output, line 1806, are the private IP address of your ELK stack. Kibana is usually handled on port 5601, and Elasticsearch on port 9200.
+
+ - Copy metricbeat-config.yml.jt file to the same directory as your metricbeat playbook. Before running the install playbook make sure that the IP address in the metricbeat config for both the Kibana, and Elasticsearch output, are the private IP address of your ELK stack. Kibana is usually handled on port 5601, and Elasticsearch on port 9200.
+
 Install metricbeat:
 
     ansible-playbook -i hosts install-metricbeat-playbook.yml
@@ -111,8 +115,8 @@ Install filebeat:
 
     ansible-playbook -i hosts install-filebeat-playbook.yml
 
-- Copy the filebeat-config.yml ile to /etc/ansible/files. Make sure that the IP address for both the Kibana, line 1106, and Elasticsearch output, line 1806, are the private IP address of your ELK stack. Kibana is usually handled on port 5601, and Elasticsearch on port 9200.
-- Run the playbook, and navigate to [http://public_IP_for_ELK:5601/app/kibana] to check that the installation worked as expected.
+
+- Navigate to [http://public_IP_for_ELK:5601/app/kibana] to check that the installation worked as expected.
 
 ### Testing
 
