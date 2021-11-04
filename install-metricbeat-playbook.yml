@@ -1,7 +1,7 @@
 ---
 - name: Install metric beat
   hosts: webservers
-  # become: true
+  # become: yes
   tasks:
     # Use command module
   - name: Download metricbeat
