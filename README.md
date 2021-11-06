@@ -122,3 +122,5 @@ If you want to test the output of the metricbeat template you can run:
       --start-at-task 'drop in metricbeat config' \
       install-metricbeat-playbook.yml.jt | \
       grep 'output\.elasticsearch:' -A 8
+      
+This should print out the IP address of your ELK stack
