@@ -11,12 +11,12 @@ These files have been tested and used to generate a live ELK deployment on Azure
 ___
 [Install filebeat playbook](install-filebeat-playbook.yml)
 
-[Filebeat config file](filebeat-config.yml)
+[Filebeat config file](filebeat-config.yml.jt)
 
 ____
 [Install metricbeat playbook](install-metricbeat-playbook.yml)
 
-[Metricbeat config file](metricbeat-config.yml)
+[Metricbeat config file](metricbeat-config.yml.jt)
 ____
 This document contains the following details:
 - Description of the Topology
@@ -111,8 +111,7 @@ Install filebeat:
 
     ansible-playbook -i hosts install-filebeat-playbook.yml
 
-- Copy the filebeat-config.yml ile to /etc/ansible/files. Make sure that the IP address for both the Kibana, line 1106, and Elasticsearch output, line 1806, are the private IP address of your ELK stack. Kibana is usually handled on port 5601, and Elasticsearch on port 9200.
-- Run the playbook, and navigate to [http://public_IP_for_ELK:5601/app/kibana] to check that the installation worked as expected.
+- After running the playbook, and navigate to [http://public_IP_for_ELK:5601/app/kibana] to check that the installation worked as expected.
 
 ### Testing
 
@@ -121,5 +120,5 @@ If you want to test the output of the metricbeat template you can run:
     ansible-playbook -i hosts \
       --check --diff --connection=local \
       --start-at-task 'drop in metricbeat config' \
-      install-metricbeat-playbook.yml | \
+      install-metricbeat-playbook.yml.jt | \
       grep 'output\.elasticsearch:' -A 8
