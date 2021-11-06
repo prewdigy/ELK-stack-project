@@ -12,7 +12,7 @@
 
   - name: drop in filebeat.yml
     copy:
-      src: filebeat-config.yml
+      src: filebeat-config.yml.jt
       dest: /etc/filebeat/filebeat.yml
 
   - name: enable and configure system module
