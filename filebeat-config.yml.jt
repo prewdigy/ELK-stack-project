@@ -1,7 +1,6 @@
 ######################## Filebeat Configuration ############################
 # This file is a full configuration example documenting all non-deprecated
-# options in comments. For a shorter configuration example, that contains only
-# the most common options, please see filebeat.yml in the same directory.
+# options in comments.
 #
 # You can find the full configuration reference here:
 # https://www.elastic.co/guide/en/beats/filebeat/index.html
@@ -1102,10 +1101,11 @@ output.elasticsearch:
   # Scheme and port can be left out and will be set to the default (http and 9200)
   # In case you specify and additional path, the scheme is required: http://localhost:9200/path
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:9200
-  hosts: ["10.1.0.4:9200"]
+  # this inserts the IP address for the data logs listed in the hosts file
+  hosts: ["{{ hostvars['data-logs']['ansible_host'] }}:9200"]
   username: "elastic"
   password: "changeme"
-  # TODO change IP address to private IP for ELK server, along with username and password
+  # TODO change username and password
 
   # Set gzip compression level.
   #compression_level: 0
@@ -1803,8 +1803,9 @@ setup.template.settings:
 # Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
 # This requires a Kibana endpoint configuration.
 setup.kibana:
-  host: "10.1.0.4:5601" 
-  # TODO: Change this to the IP address of your ELK server
+  # this changes the IP address to the data-logs address listed in the hosts file
+  host: ["{{ hostvars['data-logs']['ansible_host'] }}:5601"] 
+  
   # Kibana Host
   # Scheme and port can be left out and will be set to the default (http and 5601)
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
